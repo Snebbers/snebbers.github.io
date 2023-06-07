@@ -1,0 +1,190 @@
+<style>
+input[type="text"], textarea {
+	background-color : #282a36; 
+}
+input[type="number"], textarea {
+	background-color : #282a36; 
+}
+select { 
+	background-color : #282a36;
+	font-size: 16px;
+	padding-left: 5;
+	border: 2px solid #ccc;
+	color: #8be9fd;
+	border-radius: 7px;
+	font-family: 'Karla', sans-serif;
+	font-weight: bold;
+}
+textarea {
+	color: #8be9fd;
+	font-family: 'Karla', sans-serif;
+}
+p1 {
+	font-size: 12px;
+	font-style: italic;
+}
+a:visited {
+	color: white;
+}
+input {
+	font-size: 16px;
+	padding-left: 5;
+	border: 2px solid #ccc;
+	width: 150px;
+	color: #8be9fd;
+	border-radius: 7px;
+	font-family: 'Karla', sans-serif;
+	font-weight: bold;
+}
+body {
+	background-color: #282a36;
+	color: #f8f8f2;
+}
+label[id="o1"],[id="o2"],[id="o3"],[id="o4"],[id="o5"],[id="o6"],[id="o7"],[id="o8"],[id="exampleOutput"],[id="t1o"],[id="t2o"],[id="t3o"],[id="t4o"],[id="t5o"],[id="t6o"],[id="t7o"],[id="t8o"]{
+	color: #8be9fd;
+	font-weight: bold;
+}
+</style><html>
+<body>
+
+<h1>Idlescape augment calculator</h1>
+
+
+You can currently use this calculator to find the expected costs of augmenting an item to a certain level, or calculate how much xp you'll get on average from augmenting a certain item.<br>
+You can put numbers or simple math expressions into the fields, and use 'k' or 'm' shorthands - try putting 15*1.2k to calculate the cost of 15 ingots worth 1200 each.<br>
+You can mouse-over some fields to get a clarification of what they need.<br>
+
+<h3>Limitations:</h3>
+Xp calculations do not take into account leveling up while augmenting, which slightly increases success chances.<br>
+
+For xp calculations, only augments up to +50 are considered.<br>
+
+Remember that in practice you'll usually get less than average xp; this is offset by gaining a lot on rare, high-level augments.<br><br>
+<hr>
+
+<h3>Augmenting to make an item</h3>
+
+<label for="enchantingLevel">Enchanting level:</label>
+<input type="text" id="enchantingLevel" name="enchantingLevel" value="1" title="The level of your enchanting skill">
+<label for="masteryLevel">Mastery level:</label>
+<input type="text" id="masteryLevel" name="masteryLevel" value="0" title="The mastery level of your enchanting skill"><br><br>
+<label for="bookLevel">Book used:</label>
+<select name="bookLevel" id="bookLevel" title="The enchanting book used">
+	<option value="0">None</option>
+	<option value="10">Lesser Magic Tome</option>
+	<option value="20">Major Magic Tome</option>
+	<option value="30">Greater Magic Tome</option>
+	<option value="40">Elder Magic Tome</option>
+	<option value="50">Ancient Magic Tome</option>
+</select>
+<label id="effectiveLevel"></label><br><br>
+<label for="goal">Target augment level:</label>
+<input type="text" id="goal" name="goal" value="0"><br><br>
+
+Expected number of augments: 
+<label id="o1">Loading...</label>
+<br><br>
+
+Expected number of items:
+<label id="o2">Loading...</label>
+<br><br>
+
+Probability of success on first try:
+<label id="o3">Loading...</label>
+<br><br>
+
+
+
+<hr>
+
+<h3>Augmenting for xp</h3>
+
+<form>
+	<label for="xp">Amount of aug slots:</label>
+	<select name="xp" id="xp" title="The amount of aug slots on the item you're enchanting"><br><br>
+		<option value="20">1</option>
+		<option value="113">2</option>
+		<option value="312">3</option>
+		<option value="640">4</option>
+		<option value="1118">5</option>
+		<option value="1764">6</option>
+		<option value="2593">7</option>
+		<option value="3620">8</option>
+	</select><br>
+</form>
+
+Average augments per item: 
+<label id="o4">Loading...</label>
+<br><br>
+
+Average xp per item: 
+<label id="o5">Loading...</label>
+<br><br>
+
+Average xp per augment: 
+<label id="o6">Loading...</label>
+<br><br>
+
+<label for="expForLevel">How much exp until you level up?</label>
+<input type="text" id="expForLevel" name="expForLevel"><br>
+<p1>(A useful resource to plan level-ups can be found <a href=https://idlescape.wiki/p/Experience_Table target="_blank">here</a href> (opens in new tab!))</p1><br>
+
+Amount of base items <i>(roughly)</i> to level up:
+<label id="o7">Loading...</label>
+This works out to
+<label id="o8">0</label> augments in total<br><br>
+
+Write in the materials names in the left-most box and the quantity in the right most box<br><br>
+<table id="materialsAndAmounts">
+	<tr>
+		<th>Material</th>
+		<th>Amount per augment</th>
+		<th>Total required</th>
+	</tr>
+	<tr>
+		<th><input for="material1" id="material1" type="text" placeholder="Iron Bars"></th>
+		<th><input for="amount1" id="amount1" type="number" placeholder="10"></th>
+		<th><label id="t1o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material2" id="material2" type="text" placeholder="Shrimp"></th>
+		<th><input for="amount2" id="amount2" type="number" placeholder="9"></th>
+		<th><label id="t2o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material3" id="material3" type="text" placeholder="Willow Logs"></th>
+		<th><input for="amount3" id="amount3" type="number" placeholder="150"></th>
+		<th><label id="t3o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material4" id="material4" type="text" placeholder="Black Opal"></th>
+		<th><input for="amount4" id="amount4" type="number" placeholder="1"></th>
+		<th><label id="t4o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material5" id="material5" type="text" placeholder="Water Runes"></th>
+		<th><input for="amount5" id="amount5" type="number" placeholder="100"></th>
+		<th><label id="t5o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material6" id="material6" type="text" placeholder="Chaos Talisman"></th>
+		<th><input for="amount6" id="amount6" type="number" placeholder="32"></th>
+		<th><label id="t6o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material7" id="material7" type="text" placeholder="Giant Scraps"></th>
+		<th><input for="amount7" id="amount7" type="number" placeholder="609"></th>
+		<th><label id="t7o"></label></th>
+	</tr>
+	<tr>
+		<th><input for="material8" id="material8" type="text" placeholder="Nature runes"></th>
+		<th><input for="amount8" id="amount8" type="number" placeholder="9999"></th>
+		<th><label id="t8o"></label></th>
+	</tr>
+</table>
+<br><br>
+<textarea id="notepad" name="notepad" rows="4" cols="50" placeholder="Write some notes here so you don't have to alt-tab."></textarea>
+
+<script src="script.js"></script>
+</body>
+</html>
