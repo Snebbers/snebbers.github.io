@@ -115,7 +115,7 @@ function updateFields() {
 
 	document.getElementById("o1").innerHTML = ""+numberWithSpaces(Math.round((goal+averageWaste/successChance)*100)/100);  //output(1, goal+averageWaste/successChance);
 	document.getElementById("o2").innerHTML = ""+Math.round((1/successChance)*100)/100;  //output(2, 1/successChance);
-	document.getElementById("o3").innerHTML = ""+Math.round((successChance*100)*100)/100+"%";  //output(3, (successChance*100)+"%");
+	document.getElementById("o3").innerHTML = ""+Math.round((successChance*100)*1000)/1000+"%";  //output(3, (successChance*100)+"%");
 
 	avrAugs = 0;
 	avrXp = 0;
