@@ -97,9 +97,6 @@ function updateFields() {
 	t8o = input("t8o");
 	
 	expForLevelB = document.getElementById("expForLevel").value.replace(/[^\d]/g, '');
-	console.log("expForLevel is "+expForLevel);
-	console.log("expForLevelB is "+expForLevelB);
-	
 	
 	//Deal with weird inputs
 	if(bp>1) bp/=100;
@@ -116,7 +113,7 @@ function updateFields() {
 	}
 	successChance = cp(goal);
 
-	document.getElementById("o1").innerHTML = ""+Math.round((goal+averageWaste/successChance)*100)/100;  //output(1, goal+averageWaste/successChance);
+	document.getElementById("o1").innerHTML = ""+numberWithSpaces(Math.round((goal+averageWaste/successChance)*100)/100);  //output(1, goal+averageWaste/successChance);
 	document.getElementById("o2").innerHTML = ""+Math.round((1/successChance)*100)/100;  //output(2, 1/successChance);
 	document.getElementById("o3").innerHTML = ""+Math.round((successChance*100)*100)/100+"%";  //output(3, (successChance*100)+"%");
 
@@ -127,8 +124,8 @@ function updateFields() {
 		avrXp+= cp(i-1)*(1-p(i)) * cXpGain(i);
 	
 	}
-	
-	document.getElementById("effectiveLevel").innerHTML = "Effective Level: "+effectiveLevel;
+
+	document.getElementById("effectiveLevel").innerHTML = ""+effectiveLevel;
 	document.getElementById("o4").innerHTML = ""+Math.round(avrAugs*100)/100;
 	document.getElementById("o5").innerHTML = ""+numberWithSpaces(Math.round(avrXp*100)/100);
 	document.getElementById("o6").innerHTML = ""+numberWithSpaces(Math.round((avrXp/avrAugs)*100)/100);
@@ -149,10 +146,6 @@ function numberWithSpaces(x) {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
 }
-
-function addCommas(number) {
-			return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
 
 //Update everything on any keypress or clicking a combobox.
 window.addEventListener("keyup", function (event) {
