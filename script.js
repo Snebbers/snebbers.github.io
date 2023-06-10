@@ -48,12 +48,8 @@ function output(number, value){
 function input(name) {
 	try{
 		var res = document.getElementById(name).value;
-		res = res.toLowerCase();
-		res = res.replace(/k/g,"000");
-		res = res.replace(/m/g,"000000");
-		res = res.replace(/b/g,"000000000");
-		console.log(res);
-		var value = eval(res);
+		//console.log(res);
+		var value = parseInt(res);
 		if(isNaN(value)) {
 			value=0;
 			document.getElementById(name).style="color:#8be9fd";
@@ -100,7 +96,11 @@ function updateFields() {
 	t7o = input("t7o");
 	t8o = input("t8o");
 	
-
+	expForLevelB = document.getElementById("expForLevel").value.replace(/[^\d]/g, '');
+	console.log("expForLevel is "+expForLevel);
+	console.log("expForLevelB is "+expForLevelB);
+	
+	
 	//Deal with weird inputs
 	if(bp>1) bp/=100;
 	if(goal>1000){
@@ -125,22 +125,23 @@ function updateFields() {
 	for (var i = 1; i <= MAX_AUGMENT; i++) {
 		avrAugs+= i*(cp(i-1))*(1-p(i));
 		avrXp+= cp(i-1)*(1-p(i)) * cXpGain(i);
+	
 	}
 	
 	document.getElementById("effectiveLevel").innerHTML = "Effective Level: "+effectiveLevel;
 	document.getElementById("o4").innerHTML = ""+Math.round(avrAugs*100)/100;
 	document.getElementById("o5").innerHTML = ""+numberWithSpaces(Math.round(avrXp*100)/100);
 	document.getElementById("o6").innerHTML = ""+numberWithSpaces(Math.round((avrXp/avrAugs)*100)/100);
-	document.getElementById("o7").innerHTML = ""+Math.round((expForLevel/avrXp)*100)/100+".";
-	document.getElementById("o8").innerHTML = ""+numberWithSpaces(Math.round(avrAugs*(expForLevel/avrXp)*100)/100);
-	document.getElementById("t1o").innerHTML = " "+numberWithSpaces(amount1*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material1").value;
-	document.getElementById("t2o").innerHTML = " "+numberWithSpaces(amount2*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material2").value;
-	document.getElementById("t3o").innerHTML = " "+numberWithSpaces(amount3*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material3").value;
-	document.getElementById("t4o").innerHTML = " "+numberWithSpaces(amount4*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material4").value;
-	document.getElementById("t5o").innerHTML = " "+numberWithSpaces(amount5*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material5").value;
-	document.getElementById("t6o").innerHTML = " "+numberWithSpaces(amount6*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material6").value;
-	document.getElementById("t7o").innerHTML = " "+numberWithSpaces(amount7*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material7").value;
-	document.getElementById("t8o").innerHTML = " "+numberWithSpaces(amount8*(Math.ceil(avrAugs*(expForLevel/avrXp))))+" "+document.getElementById("material8").value;
+	document.getElementById("o7").innerHTML = ""+numberWithSpaces(Math.round((expForLevelB/avrXp)*100)/100)+".";
+	document.getElementById("o8").innerHTML = ""+numberWithSpaces(Math.round(avrAugs*(expForLevelB/avrXp)*100)/100);
+	document.getElementById("t1o").innerHTML = " "+numberWithSpaces(amount1*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material1").value;
+	document.getElementById("t2o").innerHTML = " "+numberWithSpaces(amount2*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material2").value;
+	document.getElementById("t3o").innerHTML = " "+numberWithSpaces(amount3*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material3").value;
+	document.getElementById("t4o").innerHTML = " "+numberWithSpaces(amount4*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material4").value;
+	document.getElementById("t5o").innerHTML = " "+numberWithSpaces(amount5*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material5").value;
+	document.getElementById("t6o").innerHTML = " "+numberWithSpaces(amount6*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material6").value;
+	document.getElementById("t7o").innerHTML = " "+numberWithSpaces(amount7*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material7").value;
+	document.getElementById("t8o").innerHTML = " "+numberWithSpaces(amount8*(Math.ceil(avrAugs*(expForLevelB/avrXp))))+" "+document.getElementById("material8").value;
 }
 
 function numberWithSpaces(x) {
@@ -149,10 +150,10 @@ function numberWithSpaces(x) {
     return parts.join(".");
 }
 
-function alphaOnly(event) {
-  var key = event.keyCode;
-  return ((key >= 65 && key <= 90) || key == 8 || key == 32);
-};
+function addCommas(number) {
+			return number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
 //Update everything on any keypress or clicking a combobox.
 window.addEventListener("keyup", function (event) {
   updateFields();

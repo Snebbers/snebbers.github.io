@@ -126,7 +126,7 @@ Average xp per augment:
 <br><br>
 
 <label for="expForLevel">How much exp until you level up?</label>
-<input type="text" id="expForLevel" name="expForLevel"><br>
+<input type="text" id="expForLevel" name="expForLevel" onchange="this.value=addCommas(this.value)"><br>
 <p1>(A useful resource to plan level-ups can be found <a href=https://idlescape.wiki/p/Experience_Table target="_blank">here</a href> (opens in new tab!))</p1><br>
 
 Amount of base items <i>(roughly)</i> to level up:
@@ -143,42 +143,42 @@ Write in the materials names in the left-most box and the quantity in the right 
 	</tr>
 	<tr>
 		<th><input for="material1" id="material1" type="text" placeholder="Iron Bars"></th>
-		<th><input for="amount1" id="amount1" type="number" placeholder="10"></th>
+		<th><input for="amount1" id="amount1" type="text" placeholder="10" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t1o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material2" id="material2" type="text" placeholder="Shrimp"></th>
-		<th><input for="amount2" id="amount2" type="number" placeholder="9"></th>
+		<th><input for="amount2" id="amount2" type="text" placeholder="9" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t2o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material3" id="material3" type="text" placeholder="Willow Logs"></th>
-		<th><input for="amount3" id="amount3" type="number" placeholder="150"></th>
+		<th><input for="amount3" id="amount3" type="text" placeholder="150" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t3o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material4" id="material4" type="text" placeholder="Black Opal"></th>
-		<th><input for="amount4" id="amount4" type="number" placeholder="1"></th>
+		<th><input for="amount4" id="amount4" type="text" placeholder="1" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t4o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material5" id="material5" type="text" placeholder="Water Runes"></th>
-		<th><input for="amount5" id="amount5" type="number" placeholder="100"></th>
+		<th><input for="amount5" id="amount5" type="text" placeholder="100" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t5o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material6" id="material6" type="text" placeholder="Chaos Talisman"></th>
-		<th><input for="amount6" id="amount6" type="number" placeholder="32"></th>
+		<th><input for="amount6" id="amount6" type="text" placeholder="32" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t6o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material7" id="material7" type="text" placeholder="Giant Scraps"></th>
-		<th><input for="amount7" id="amount7" type="number" placeholder="609"></th>
+		<th><input for="amount7" id="amount7" type="text" placeholder="609" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t7o"></label></th>
 	</tr>
 	<tr>
 		<th><input for="material8" id="material8" type="text" placeholder="Nature runes"></th>
-		<th><input for="amount8" id="amount8" type="number" placeholder="9999"></th>
+		<th><input for="amount8" id="amount8" type="text" placeholder="9999" onkeyup="this.value=addCommas(this.value)"></th>
 		<th><label id="t8o"></label></th>
 	</tr>
 </table>
